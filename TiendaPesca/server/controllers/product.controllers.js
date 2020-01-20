@@ -18,10 +18,19 @@ productCtrl.createProduct = async(req,res) =>{
     });
 };
 productCtrl.editProduct = async(req,res) =>{
-
+    const { id } = req.params;
+    const product = {
+        name : req.body.name,
+        brand : req.body.brand,
+        description : req.body.description,
+        cash : req.body.cash
+    };
+    await Product.findByIdAndUpdate(id,{$set:product}, {new:true});
+    res.json({status: "Product update"});
 };
 productCtrl.deleteProduct = async(req,res) =>{
-
+    await Product.findByIdAndDelete(req.params.id);
+    res.json({status:"Product deleted"});
 };
 
 module.exports = productCtrl;
