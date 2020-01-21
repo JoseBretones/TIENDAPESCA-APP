@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
-const { Shema } = mongoose;
+const { Schema } = mongoose;
 
-const ProductsShema = new Shema ({
+const ProductsShema = new Schema ({
     name: {type:String, require:true},
     brand: {type:String, require:true},
     description: {type:String, require:false},
