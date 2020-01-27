@@ -11,7 +11,12 @@ productCtrl.getProduct = async(req,res) =>{
     res.json(product);
 };
 productCtrl.createProduct = async(req,res) =>{
-    const product = new Product(req.body);
+    const product = new Product({
+        name: req.body.name,
+        brand: req.body.brand,
+        description: req.body.description,
+        cash: req.body.cash
+    });
     await product.save();
     res.json({
         'status':'Product save'
