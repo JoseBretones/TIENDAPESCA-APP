@@ -8,4 +8,4 @@ const ProductsShema = new Schema ({
     cash: {type:Number, require:true}
 });
 
-module.exports = mongoose.model('Products', ProductsShema);
+module.exports = mongoose.model('Product', ProductsShema);
