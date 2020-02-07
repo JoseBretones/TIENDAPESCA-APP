@@ -6,7 +6,7 @@ productCtrl.getProducts = async(req,res) =>{
     const products = await Product.find();
     res.json(products);
 };
-productCtrl.getProduct = async(req,res) =>{
+productCtrl.getProductById = async(req,res) =>{
     const product = await Product.findById(req.params.id);
     res.json(product);
 };
