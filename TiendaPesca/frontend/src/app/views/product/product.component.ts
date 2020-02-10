@@ -2,24 +2,26 @@ import { Component, OnInit } from '@angular/core';
 import {NgForm} from '@angular/forms';
 import { ProductsService } from 'src/app/services/products.service';
 import { Product } from 'src/app/models/product';
-import { Toast, ToastrService } from 'ngx-toastr';
+
+declare var M: any;
 
 @Component({
   selector: 'app-product',
   templateUrl: './product.component.html',
-  styleUrls: ['./product.component.css']
+  styleUrls: ['./product.component.css'],
+  providers: [ProductsService]
 })
 export class ProductComponent implements OnInit {
 
   productCollection : Product[] = [];
-  constructor(private productService : ProductsService , private toast : ToastrService) { }
+  constructor(private productService : ProductsService ) { }
 
   ngOnInit() {
     this.getProducts();
 
   }
 
-  addTeacher(form:NgForm){
+  addProduct(form:NgForm){
 
     if(form.value._id){
       this.productService.editProduct(form.value)
@@ -27,10 +29,10 @@ export class ProductComponent implements OnInit {
           if(res){
              console.log(res);
           this.resetForm(form);
-          this.toast.success('Product updated succesfully','Success');
+         M.toast({html: 'Product updated succesfully'});
           this.getProducts();
           }else{
-            this.toast.error('Product could not be updated','Error');
+            M.toast({html: 'Product could not be updated'});
           }
          
         });
@@ -41,7 +43,7 @@ export class ProductComponent implements OnInit {
       .subscribe( res=>{
         console.log(res);
         this.resetForm(form);
-        this.toast.success(`Product save succesfully`,'Success');
+        M.toast({html: `Product save succesfully`});
         this.getProducts();
       });
     }    
@@ -59,16 +61,16 @@ export class ProductComponent implements OnInit {
         console.log(res);
       });
   }
-  editTeacher(product: Product){
+  editProduct(product: Product){
     //this.productService.selectedTeacher = product;
 
   }
-  deleteTeacher(_id: String){
+  deleteProduct(_id: String){
     if(confirm('Are you sure you want delete it?')){
       this.productService.deleteProduct(_id)
         .subscribe(res=>{
           this.getProducts();
-          this.toast.success('Product deleted succesfully','Success');
+          M.toast({html: 'Product deleted succesfully'});
         });
     }
   }

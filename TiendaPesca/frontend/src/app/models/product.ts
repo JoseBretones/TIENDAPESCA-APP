@@ -6,7 +6,7 @@ export class Product {
     description: String;
     cash: Number;
 
-    constructor(_id, name, brand, description, cash){
+    constructor(_id='', name='', brand='', description='', cash=0){
         this._id=_id;
         this.name=name;
         this.brand=brand;

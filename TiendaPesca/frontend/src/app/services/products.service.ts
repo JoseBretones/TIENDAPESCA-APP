@@ -8,6 +8,7 @@ import { Product } from '../models/product';
 export class ProductsService {
 
   readonly URL_API = 'http://localhost:3000/tienda/productos';
+  selectedProduct = new Product;
   productCollection: Product[];
 
   constructor(private http: HttpClient) { 

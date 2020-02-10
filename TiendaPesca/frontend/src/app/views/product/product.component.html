@@ -4,20 +4,20 @@
         <div class="col s5">
             <div class="card">
                 <div class="card-content">
-                    <form>
-                        <input type="hidden" name="_id">
+                    <form #productForm="ngForm" (ngSubmit)="addProduct(productForm)">
+                        <input type="hidden" name="_id" #_id="ngModel" [(ngModel)]=productService.selectedProduct._id>
                         <div class="row">
                             <div class="input-field col s12">
-                                <input type="text" name="name" placeholder="Enter product name">
+                                <input type="text" #name="ngModel" name="name" [(ngModel)]="productService.selectedProduct.name" placeholder="Enter product name">
                             </div>
                             <div class="input-field col s12">
-                                <input type="text" name="subname" placeholder="Enter product brand">
+                                <input type="text" #brand="ngModel" name="brand" [(ngModel)]="productService.selectedProduct.brand" placeholder="Enter product brand">
                             </div>
                             <div class="input-field col s12">
-                                <input type="text" name="area" placeholder="Enter product description">
+                                <input type="text" #description="ngModel" name="description" [(ngModel)]="productService.selectedProduct.description" placeholder="Enter product description">
                             </div>
                             <div class="input-field col s12">
-                                <input type="number" name="salary" placeholder="Enter product cash">
+                                <input type="number" #cash="ngModel" name="cash" [(ngModel)]="productService.selectedProduct.cash" placeholder="Enter product cash">
                             </div>
                             <div class="card-action">
                                 <div class="input-field col s12">
@@ -46,7 +46,7 @@
                         <td>{{product?.cash}}</td>
                         <td>
                             <a>
-                                <i class="material-icons pointer" (click)='createProduct(product)'>edit</i>
+                                <i class="material-icons pointer" (click)='addProduct(product)'>edit</i>
                             </a>
                             <a>
                                 <i class="material-icons pointer" (click)='deleteProduct(product._id)'>delete</i>
