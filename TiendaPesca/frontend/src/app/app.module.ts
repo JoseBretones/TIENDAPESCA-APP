@@ -9,6 +9,7 @@ import { MenuComponent } from './menu/menu/menu.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
+import {ToastrModule} from 'ngx-toastr';
 
 
 @NgModule({
@@ -23,6 +24,7 @@ import { FormsModule } from '@angular/forms';
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
+    ToastrModule.forRoot(),
     FormsModule,
     HttpClientModule
   ],

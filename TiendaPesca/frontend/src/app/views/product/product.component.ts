@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import {NgForm} from '@angular/forms';
 import { ProductsService } from 'src/app/services/products.service';
 import { Product } from 'src/app/models/product';
+import { ToastrService } from 'ngx-toastr';
 
-declare var M: any;
 
 @Component({
   selector: 'app-product',
@@ -12,9 +12,11 @@ declare var M: any;
   providers: [ProductsService]
 })
 export class ProductComponent implements OnInit {
-
+  selectedProduct = new Product;
   productCollection : Product[] = [];
-  constructor(private productService : ProductsService ) { }
+  constructor(private productService : ProductsService , private toast: ToastrService ) {
+    this.selectedProduct = new Product();
+  }
 
   ngOnInit() {
     this.getProducts();
@@ -22,47 +24,43 @@ export class ProductComponent implements OnInit {
   }
 
   addProduct(form:NgForm){
-
     if(form.value._id){
       this.productService.editProduct(form.value)
         .subscribe(res =>{
           if(res){
-             console.log(res);
           this.resetForm(form);
-         M.toast({html: 'Product updated succesfully'});
+          this.toast.success('Product updated successfully' , 'Success');
           this.getProducts();
           }else{
-            M.toast({html: 'Product could not be updated'});
+            this.toast.error('Product could not be updated');
           }
-         
+
         });
-      
+
     }else{
 
       this.productService.createProduct(form.value)
       .subscribe( res=>{
-        console.log(res);
         this.resetForm(form);
-        M.toast({html: `Product save succesfully`});
+        this.toast.success('Product saved successfully');
         this.getProducts();
       });
-    }    
+    }
   }
   resetForm(form:NgForm){
     if(form){
       form.reset();
-      // this.productService.selectedTeacher = new Product();
+      this.selectedProduct = new Product();
     }
   }
   getProducts(){
     this.productService.getProducts()
       .subscribe( res =>{
         this.productCollection = res as Product[];
-        console.log(res);
       });
   }
   editProduct(product: Product){
-    //this.productService.selectedTeacher = product;
+    this.selectedProduct = product;
 
   }
   deleteProduct(_id: String){
@@ -70,7 +68,7 @@ export class ProductComponent implements OnInit {
       this.productService.deleteProduct(_id)
         .subscribe(res=>{
           this.getProducts();
-          M.toast({html: 'Product deleted succesfully'});
+          this.toast.success('Product deleted successfully');
         });
     }
   }
