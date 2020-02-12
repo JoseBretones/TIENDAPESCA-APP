@@ -4,29 +4,7 @@
         <div class="col s5">
             <div class="card">
                 <div class="card-content">
-                    <form #orderForm="ngForm" (ngSubmit)="addOrder(orderForm)">
-                        <input type="hidden" name="_id" #_id="ngModel" [(ngModel)]="selectedOrder._id">
-                        <div class="row">
-                            <div class="input-field col s12">
-                                <input type="text" #name="ngModel" name="name" [(ngModel)]="selectedOrder.name" placeholder="Enter product name">
-                            </div>
-                            <div class="input-field col s12">
-                                <input type="text" #brand="ngModel" name="brand" [(ngModel)]="selectedOrder.brand" placeholder="Enter product brand">
-                            </div>
-                            <div class="input-field col s12">
-                                <input type="text" #description="ngModel" name="description" [(ngModel)]="selectedOrder.description" placeholder="Enter product description">
-                            </div>
-                            <div class="input-field col s12">
-                                <input type="number" #cash="ngModel" name="cash" [(ngModel)]="selectedOrder.cash" placeholder="Enter product cash">
-                            </div>
-                            <div class="card-action">
-                                <div class="input-field col s12">
-                                    <button class="btn" (click)="resetForm(productForm)">Clean</button>
-                                    <button class="btn right">Save</button>
-                                </div>
-                            </div>
-                        </div>
-                    </form>
+                    <!--Carrito-->
                 </div>
             </div>
         </div>
@@ -39,20 +17,20 @@
                     <th>Cash</th>
                 </thead>
                 <tbody>
-                    <tr *ngFor='let product of productCollection'>
-                        <td>{{product?.name}}</td>
-                        <td>{{product?.brand}}</td>
-                        <td>{{product?.description}}</td>
-                        <td>{{product?.cash}}</td>
+                    <!-- <tr *ngFor='let order of orderCollection'>
+                        <td>{{order?.name}}</td>
+                        <td>{{order?.brand}}</td>
+                        <td>{{order?.description}}</td>
+                        <td>{{order?.cash}}</td>
                         <td>
                             <a>
-                                <i class="material-icons pointer" (click)='editProduct(product)'>edit</i>
+                                <i class="material-icons pointer" (click)='editOrder(order)'>edit</i>
                             </a>
                             <a>
                                 <i class="material-icons pointer" (click)='deleteProduct(product._id)'>delete</i>
-                            </a>
-                        </td>
-                    </tr>
+                            </a> -->
+                        <!-- </td>
+                    </tr> -->
                 </tbody>
             </table>
         </div>

@@ -54,11 +54,11 @@ export class OrderComponent implements OnInit {
   }
 
 
-  editUser(order: Order){
+  editOrder(order: Order){
     this.selectedOrder = order;
   }
 
-  deleteUser(_id: String){
+  deleteOrder(_id: String){
     if(confirm('Are you sure you want delete it?')){
       this.orderService.deleteOrder(_id)
         .subscribe(res=>{

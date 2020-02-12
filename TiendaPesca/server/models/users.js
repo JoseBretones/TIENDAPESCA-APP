@@ -7,6 +7,7 @@ const UsersShema = new Schema ({
     DNI: {type:String, require:false},
     direction: {type:String, require:true},
     email: {type:String, require:true},
+    password: {type:String, require:true},
     CP: {type: Number, require:true},
     role: {type:String, require:true},
     telephone: {type:Number, require:true}
