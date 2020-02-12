@@ -1,1 +1,76 @@
-<p>user works!</p>
+<h1>Users</h1>
+<div class="container">
+  <div class="row">
+      <div class="col s5">
+          <div class="card">
+              <div class="card-content">
+                  <form #userForm="ngForm" (ngSubmit)="addUser(userForm)">
+                      <input type="hidden" name="_id" #_id="ngModel" [(ngModel)]="selectedUser._id">
+                      <div class="row">
+                          <div class="input-field col s12">
+                              <input type="text" #name="ngModel" name="name" [(ngModel)]="selectedUser.name" placeholder="Enter user name">
+                          </div>
+                          <div class="input-field col s12">
+                              <input type="text" #subname="ngModel" name="subname" [(ngModel)]="selectedUser.subname" placeholder="Enter user subname">
+                          </div>
+                          <div class="input-field col s12">
+                              <input type="text" #DNI="ngModel" name="DNI" [(ngModel)]="selectedUser.DNI" placeholder="Enter user DNI">
+                          </div>
+                          <div class="input-field col s12">
+                            <input type="text" #direction="ngModel" name="direction" [(ngModel)]="selectedUser.direction" placeholder="Enter user direction">
+                          </div>
+                          <div class="input-field col s12">
+                            <input type="email" #email="ngModel" name="email" [(ngModel)]="selectedUser.email" placeholder="Enter user email">
+                          </div>
+                          <div class="input-field col s12">
+                              <input type="number" #CP="ngModel" name="CP" [(ngModel)]="selectedUser.CP" placeholder="Enter user CP">
+                          </div>
+                          <div class="input-field col s12">
+                            <input type="tel" #telephone="ngModel" name="telephone" [(ngModel)]="selectedUser.telephone" placeholder="Enter user telephone">
+                        </div>
+                          <div class="card-action">
+                              <div class="input-field col s12">
+                                  <button class="btn" (click)="resetForm(userForm)">Clean</button>
+                                  <button class="btn right">Save</button>
+                              </div>
+                          </div>
+                      </div>
+                  </form>
+              </div>
+          </div>
+      </div>
+      <div class="col s7">
+          <table>
+              <thead>
+                  <th>Name</th>
+                  <th>Subname</th>
+                  <th>DNI</th>
+                  <th>Adress</th>
+                  <th>Email</th>
+                  <th>CP</th>
+                  <th>phone</th>
+              </thead>
+              <tbody>
+                  <tr *ngFor='let user of userCollection'>
+                      <td>{{user?.name}}</td>
+                      <td>{{user?.subname}}</td>
+                      <td>{{user?.DNI}}</td>
+                      <td>{{user?.direction}}</td>
+                      <td>{{user?.email}}</td>
+                      <td>{{user?.CP}}</td>
+                      <td>{{user?.telephone}}</td>
+                      <td>
+                          <a>
+                              <i class="material-icons pointer" (click)='editUser(user)'>edit</i>
+                          </a>
+                          <a>
+                              <i class="material-icons pointer" (click)='deleteUser(user._id)'>delete</i>
+                          </a>
+                      </td>
+                  </tr>
+              </tbody>
+          </table>
+      </div>
+  </div>
+</div>
+

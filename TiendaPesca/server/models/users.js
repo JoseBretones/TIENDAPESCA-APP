@@ -8,7 +8,7 @@ const UsersShema = new Schema ({
     direction: {type:String, require:true},
     email: {type:String, require:true},
     CP: {type: Number, require:true},
-    admin: {type:Boolean, require:true},
+    role: {type:String, require:true},
     telephone: {type:Number, require:true}
 });
 
