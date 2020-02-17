@@ -1,6 +1,6 @@
 const User = require('../models/users');
 const bcrypt = require ('bcrypt-nodejs');
-const jwtServices = require ('../services/jwt.services');
+const jwtService = require ('../services/jwt.services');
 
 const userCtrl = {};
 

@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { User } from '../models/user';
+import { environment } from 'src/environments/environment';
 
 
 @Injectable({
@@ -8,10 +9,20 @@ import { User } from '../models/user';
 })
 export class UserService {
 
-  readonly URL_API = 'http://localhost:3000/tienda/usuarios';
+  URL_API: string;
 
-  constructor(private http: HttpClient){}
+  constructor(private http: HttpClient){
+    this.URL_API = environment.url;
+  }
 
+  login(params){
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json'
+      })
+    };
+    return this.http.post(this.URL_API+'login',params,httpOptions);
+  }
 
   getUsers(){
     return this.http.get(this.URL_API);

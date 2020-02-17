@@ -1,2 +1,42 @@
-<app-menu></app-menu>
-<router-outlet></router-outlet>
+<div *ngIf="userLogged; else showForms">
+  <app-menu></app-menu>
+  <router-outlet></router-outlet>
+</div>
+<ng-template #showForms>
+  <div class="row">
+    <div class="col s6">
+      <h2>Login</h2>
+      <form #loginForm="ngForm" (ngSubmit)="login(loginForm)" class="cols 7">
+      <p>
+        <label>Email</label>
+        <input type="text" required #email="ngModel" name="email" [(ngModel)]="user.email">
+      </p>
+      <p>
+        <label>Password</label>
+        <input type="password" required #password="ngModel" name="password" [(ngModel)]="user.password">
+      </p>
+      <input type="submit" value="Login" class="btn">
+    </form>
+    </div>
+    <div class="col s6">
+      <h2>Register</h2>
+      <p>
+        <label>Nombre:</label>
+        <input type="text" required>
+      </p>
+      <p>
+        <label>Apellidos</label>
+        <input type="text" required>
+      </p>
+      <p>
+        <label>Email</label>
+        <input type="email" required>
+      </p>
+      <p>
+        <label>Password</label>
+        <input type="password" required>
+      </p>
+      <input type="submit" value="Register" class="btn">
+    </div>
+  </div>
+</ng-template>
